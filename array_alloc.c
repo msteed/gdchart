@@ -12,7 +12,7 @@
 *
 * Function Name:         allocate_array_float
 *
-* Function Prototype:    float	** allocate_array_float (int nr, int nc)
+* Function Prototype:    float  ** allocate_array_float (int nr, int nc)
 *
 * Allocates memory for a two-dimensional array of floats
 * referenced as arr[r][c]
@@ -56,40 +56,40 @@
 *
 ****************************************************************************F*/
 float **
-allocate_array_float( int	nr,		/* number of pointer array elements */
-					  int	nc )	/* larger number for min memory usage */
+allocate_array_float( int   nr,     /* number of pointer array elements */
+                      int   nc )    /* larger number for min memory usage */
 {
-	int		i;
-	float	**arr;
+    int     i;
+    float   **arr;
 
-	/* Try to allocate memory for the pointer array, 'nr' pointers-to-float: */
-	arr = (float**)malloc( nr * sizeof(float*) );
-	/* no test for success ala glib, i.e., if you're outa memory, ... */
+    /* Try to allocate memory for the pointer array, 'nr' pointers-to-float: */
+    arr = (float**)malloc( nr * sizeof(float*) );
+    /* no test for success ala glib, i.e., if you're outa memory, ... */
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc pointer array in allocate_array_float()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc pointer array in allocate_array_float()\n" );
+        exit( 2 );
+        }
 #endif
-	
-	/* Now allocate memory for the data array, 'nr * nc' floats: */
-	arr[0] = (float*)malloc( nr * nc * sizeof(float) );
+
+    /* Now allocate memory for the data array, 'nr * nc' floats: */
+    arr[0] = (float*)malloc( nr * nc * sizeof(float) );
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc data array in allocate_array_float()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc data array in allocate_array_float()\n" );
+        exit( 2 );
+        }
 #endif
-	/* fill in the array pointers to point to successive columns. */
-	/* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
-	/* Note that adding 1 to (float*)a.arr[0] adds sizeof(float*) automatically. */
+    /* fill in the array pointers to point to successive columns. */
+    /* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
+    /* Note that adding 1 to (float*)a.arr[0] adds sizeof(float*) automatically. */
 
-	for (i = 1; i < nr; i++) 
-		arr[i] = arr[0] + i*nc;
+    for (i = 1; i < nr; i++) 
+        arr[i] = arr[0] + i*nc;
 
-	return arr;
+    return arr;
 
 } /* End of FUNCTION allocate_array_float */
 
@@ -99,40 +99,40 @@ allocate_array_float( int	nr,		/* number of pointer array elements */
 *
 ************************************************************************************/
 char **
-allocate_array_char( int	nr,
-					 int	nc )
+allocate_array_char( int    nr,
+                     int    nc )
 {
-	int		i;
-	char	**arr;
+    int     i;
+    char    **arr;
 
-	/* Try to allocate memory for the pointer array, 'nr' pointers-to-chars: */
-	arr = (char**)malloc( nr * sizeof(char*) );
-	/* no test for success ala glib, i.e., if you're outa memory, ... */
+    /* Try to allocate memory for the pointer array, 'nr' pointers-to-chars: */
+    arr = (char**)malloc( nr * sizeof(char*) );
+    /* no test for success ala glib, i.e., if you're outa memory, ... */
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc pointer array in allocate_array_char()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc pointer array in allocate_array_char()\n" );
+        exit( 2 );
+        }
 #endif
-	
-	/* Now allocate memory for the data array, 'nr * nc' char: */
-	arr[0] = (char*)malloc( nr * nc * sizeof(char) );
+
+    /* Now allocate memory for the data array, 'nr * nc' char: */
+    arr[0] = (char*)malloc( nr * nc * sizeof(char) );
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc data array in allocate_array_char()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc data array in allocate_array_char()\n" );
+        exit( 2 );
+        }
 #endif
-	/* fill in the array pointers to point to successive columns. */
-	/* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
-	/* Note that adding 1 to (char*)a.arr[0] adds sizeof(char*) automatically. */
+    /* fill in the array pointers to point to successive columns. */
+    /* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
+    /* Note that adding 1 to (char*)a.arr[0] adds sizeof(char*) automatically. */
 
-	for (i = 1; i < nr; i++) 
-		arr[i] = arr[0] + i*nc;
+    for (i = 1; i < nr; i++) 
+        arr[i] = arr[0] + i*nc;
 
-	return arr;
+    return arr;
 
 } /* End of FUNCTION allocate_array_char */
 
@@ -142,41 +142,41 @@ allocate_array_char( int	nr,
 *
 ************************************************************************************/
 int **
-allocate_array_int( int	nr,
-					int	nc )
+allocate_array_int( int nr,
+                    int nc )
 
 {
-	int		i;
-	int		**arr;
+    int     i;
+    int     **arr;
 
-	/* Try to allocate memory for the pointer array, 'nr' pointers-to-ints: */
-	arr = (int**)malloc( nr * sizeof(int*) );
-	/* no test for success ala glib, i.e., if you're outa memory, ... */
+    /* Try to allocate memory for the pointer array, 'nr' pointers-to-ints: */
+    arr = (int**)malloc( nr * sizeof(int*) );
+    /* no test for success ala glib, i.e., if you're outa memory, ... */
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc pointer array in allocate_array_int()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc pointer array in allocate_array_int()\n" );
+        exit( 2 );
+        }
 #endif
-	
-	/* Now allocate memory for the data array, 'nr * nc' int: */
-	arr[0] = (int*)malloc( nr * nc * sizeof(int) );
+
+    /* Now allocate memory for the data array, 'nr * nc' int: */
+    arr[0] = (int*)malloc( nr * nc * sizeof(int) );
 #ifdef DBUG
-	if( arr == NULL )
-		{
-		perror( "Unable to malloc data array in allocate_array_int()\n" );
-		exit( 2 );
-		}
+    if( arr == NULL )
+        {
+        perror( "Unable to malloc data array in allocate_array_int()\n" );
+        exit( 2 );
+        }
 #endif
-	/* fill in the array pointers to point to successive columns. */
-	/* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
-	/* Note that adding 1 to (int*)a.arr[0] adds sizeof(int*) automatically. */
+    /* fill in the array pointers to point to successive columns. */
+    /* Don't need to do the first (zeroth) one, because it was set up by the data malloc. */
+    /* Note that adding 1 to (int*)a.arr[0] adds sizeof(int*) automatically. */
 
-	for (i = 1; i < nr; i++) 
-		arr[i] = arr[0] + i*nc;
+    for (i = 1; i < nr; i++) 
+        arr[i] = arr[0] + i*nc;
 
-	return arr;
+    return arr;
 
 } /* End of FUNCTION allocate_array_int */
 
